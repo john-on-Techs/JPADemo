@@ -2,6 +2,7 @@ package com.jotech.models;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Map;
 import java.util.Set;
 
 @Entity
@@ -22,6 +23,16 @@ public class Employee {
     @ElementCollection
     @Column(name = "nickname")
     private Set<String> nickNames;
+
+    //The types of phone numbers have to be unique only within a given Map or
+    //Employee instance, so the PHONE_TYPE column won’t be the primary key, either.
+    @ElementCollection
+    @CollectionTable(name = "emp_phone")
+    @MapKeyEnumerated(EnumType.STRING)
+    @MapKeyColumn(name = "phone_type")
+    @Column(name ="phone_num")
+    private Map<PhoneType,String> phoneNumbers;
+
 
     public int getId() {
         return id;
@@ -61,5 +72,13 @@ public class Employee {
 
     public void setNickNames(Set<String> nickNames) {
         this.nickNames = nickNames;
+    }
+
+    public Map<String, String> getPhoneNumbers() {
+        return phoneNumbers;
+    }
+
+    public void setPhoneNumbers(Map<String, String> phoneNumbers) {
+        this.phoneNumbers = phoneNumbers;
     }
 }
