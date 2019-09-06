@@ -74,11 +74,11 @@ public class Employee {
         this.nickNames = nickNames;
     }
 
-    public Map<String, String> getPhoneNumbers() {
+    public Map<PhoneType, String> getPhoneNumbers() {
         return phoneNumbers;
     }
 
-    public void setPhoneNumbers(Map<String, String> phoneNumbers) {
+    public void setPhoneNumbers(Map<PhoneType, String> phoneNumbers) {
         this.phoneNumbers = phoneNumbers;
     }
 }
